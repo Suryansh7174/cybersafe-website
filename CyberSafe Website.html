@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSafe App</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&family=Poppins:wght@300;400;600&display=swap');
+        body {
+            background-color: #000;
+            color: #0ff;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+        header {
+            font-family: 'Orbitron', sans-serif;
+            padding: 20px;
+            font-size: 2em;
+            text-shadow: 0 0 10px #0ff;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #0ff;
+            text-decoration: none;
+            font-size: 1.5em;
+            text-shadow: 0 0 5px #0ff;
+            font-family: 'Orbitron', sans-serif;
+        }
+        section {
+            margin: 40px 20px;
+            padding: 20px;
+            border: 2px solid #0ff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #0ff;
+        }
+        button {
+            background-color: #000;
+            color: #0ff;
+            border: 2px solid #0ff;
+            padding: 10px 20px;
+            font-size: 1.5em;
+            text-shadow: 0 0 5px #0ff;
+            cursor: pointer;
+            box-shadow: 0 0 10px #0ff;
+        }
+        button:hover {
+            background-color: #0ff;
+            color: #000;
+        }
+        img {
+            width: 80%;
+            margin: 20px auto;
+            display: block;
+            border: 2px solid #0ff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #0ff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CyberSafe: A Game for Teenagers</h1>
+        <p>Your guide to online safety in India</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#tips">Tips</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#stories">Stories</a></li>
+        </ul>
+    </nav>
+    
+    <section id="home">
+        <h2>Welcome to CyberSafe</h2>
+        <p>Stay safe online with our cybersecurity tips, qizes and can also play many exciting mini games, specifically designed for India.</p>
+    </section>
+    
+    <section id="about">
+        <h2>About CyberSafe</h2>
+        <p>CyberSafe is an initiative focused on raising awareness about cybersecurity in India. It covers phishing, digital identity protection, and cyber laws.</p>
+        <p>Below is an image of our CyberSafe Game that helps users understand online threats interactively:</p>
+        <img src="C:\Users\Yash\Pictures\Screenshots\Screenshot 2024-12-01 193507.png" alt="">
+        <p>In this game, players navigate through cybersecurity challenges, learning how to spot scams, secure their passwords, and report threats.</p>
+    </section>
+    
+    <section id="tips">
+        <h2>Cybersecurity Tips</h2>
+        <ul>
+            <li>Use strong passwords and change them regularly.</li>
+            <li>Enable two-factor authentication.</li>
+            <li>Beware of phishing emails and suspicious links.</li>
+            <li>Keep your software updated.</li>
+            <li>Use secure internet connections and avoid public Wi-Fi.</li>
+        </ul>
+    </section>
+    
+    <section id="quiz">
+        <h2>Cyber Safety Quiz</h2>
+        <button onclick="startQuiz()">Start Quiz</button>
+        <div id="quizContainer"></div>
+    </section>
+    
+    <section id="news">
+        <h2>Latest Cyber News in India</h2>
+        <p>Stay updated with recent cybersecurity threats, policies, and measures.</p>
+        <ul>
+            <li><a href="https://www.cert-in.org.in/" target="_blank">CERT-In: Cyber Security Advisories</a></li>
+            <li><a href="https://www.thehindu.com/sci-tech/technology/india-cybersecurity-updates/" target="_blank">The Hindu: Cybersecurity Updates</a></li>
+            <li><a href="https://www.moneycontrol.com/news/tags/cybersecurity.html" target="_blank">Cybersecurity News on MoneyControl</a></li>
+            <li><a href="https://indianexpress.com/section/technology/cybersecurity/" target="_blank">Indian Express: Cybersecurity</a></li>
+            <li><a href="https://www.hindustantimes.com/india-news/cybercrime" target="_blank">Cyber Crime Cases in India - Hindustan Times</a></li>
+        </ul>
+    </section>
+    
+    <section id="stories">
+        <h2>Real Cybersecurity Stories</h2>
+        <p>Learn from real-life cyberattack cases and fraud incidents.</p>
+        <ul>
+            <li><a href="https://www.ndtv.com/india-news/online-scam-costs-indian-man-rs-10-lakh" target="_blank">Phishing Scam Cost an Indian ₹10 Lakh</a></li>
+            <li><a href="https://www.timesnownews.com/technology-science/how-hackers-stole-money-from-bank-accounts" target="_blank">How Hackers Stole Money from Bank Accounts</a></li>
+            <li><a href="https://www.thehindu.com/news/national/cyber-fraud-victim-speaks-out/" target="_blank">Cyber Fraud Victim Shares Their Story</a></li>
+            <li><a href="https://indianexpress.com/article/technology/tech-news-technology/otp-fraud-how-scammers-tricked-victims-9074550/" target="_blank">OTP Fraud: How Scammers Tricked Victims</a></li>
+            <li><a href="https://www.business-standard.com/article/current-affairs/how-social-media-hacks-can-destroy-lives-122010400020_1.html" target="_blank">Social Media Hacks & Their Impact</a></li>
+        </ul>
+    </section>
+
+    <script>
+        function startQuiz() {
+            const quizContainer = document.getElementById("quizContainer");
+            const questions = [
+                { 
+                    question: "What is the full form of VPN?", 
+                    options: ["A. Virtual Private Network", "B. Verified Public Node", "C. Variable Private Net"], 
+                    answer: "A" 
+                },
+                { 
+                    question: "Which of these is the safest password?", 
+                    options: ["A. password123", "B. @MyDog_2024!", "C. 123456"], 
+                    answer: "B" 
+                },
+                { 
+                    question: "What should you do if you get a phishing email?", 
+                    options: ["A. Click the link to check", "B. Delete it", "C. Share it with friends"], 
+                    answer: "B" 
+                },
+                { 
+                    question: "How can you identify a fake website?", 
+                    options: ["A. It has 'http://' instead of 'https://'", "B. It has a lock icon", "C. It asks for personal details"], 
+                    answer: "A" 
+                },
+                { 
+                    question: "What is Two-Factor Authentication (2FA)?", 
+                    options: ["A. A backup password", "B. Extra security using OTPs or biometrics", "C. A type of malware"], 
+                    answer: "B" 
+                }
+            ];
+            
+            let currentQuestion = 0;
+            
+            function showQuestion() {
+                let q = questions[currentQuestion];
+                quizContainer.innerHTML = `<p>${q.question}</p>` +
+                    q.options.map((opt, index) => `<button onclick="checkAnswer('${String.fromCharCode(65 + index)}')">${opt}</button>`).join(" ") +
+                    `<p id='quizResult'></p>`;
+            }
+            
+            function checkAnswer(option) {
+                const result = document.getElementById("quizResult");
+                if (option === questions[currentQuestion].answer) {
+                    result.innerHTML = "✅ Correct!";
+                    currentQuestion++;
+                    if (currentQuestion < questions.length) {
+                        setTimeout(showQuestion, 1000);
+                    } else {
+                        quizContainer.innerHTML = "<p>🎉 You have completed the quiz! 🎉</p>";
+                    }
+                } else {
+                    result.innerHTML = "❌ Incorrect. Try again!";
+                }
+            }
+            
+            showQuestion();
+        }
+    </script>
+</body>
+</html>
+
