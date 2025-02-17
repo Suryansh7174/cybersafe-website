@@ -84,15 +84,12 @@
     
     <section id="home">
         <h2>Welcome to CyberSafe</h2>
-        <p>Stay safe online with our cybersecurity tips, qizes and can also play many exciting mini games, specifically designed for India.</p>
+        <p>Stay safe online with our cybersecurity tips, quizzes, and mini-games, specifically designed for India.</p>
     </section>
     
     <section id="about">
         <h2>About CyberSafe</h2>
         <p>CyberSafe is an initiative focused on raising awareness about cybersecurity in India. It covers phishing, digital identity protection, and cyber laws.</p>
-        <p>Below is an image of our CyberSafe Game that helps users understand online threats interactively:</p>
-        <img src="C:\Users\Yash\Pictures\Screenshots\Screenshot 2024-12-01 193507.png" alt="">
-        <p>In this game, players navigate through cybersecurity challenges, learning how to spot scams, secure their passwords, and report threats.</p>
     </section>
     
     <section id="tips">
@@ -137,63 +134,100 @@
     </section>
 
     <script>
+        let currentQuestionIndex = 0;
+        let score = 0;
+        const questions = [
+            { 
+                question: "What is the full form of VPN?", 
+                options: ["A. Virtual Private Network", "B. Verified Public Node", "C. Variable Private Net"], 
+                answer: "A" 
+            },
+            { 
+                question: "Which of these is the safest password?", 
+                options: ["A. password123", "B. @MyDog_2024!", "C. 123456"], 
+                answer: "B" 
+            },
+            { 
+                question: "What should you do if you get a phishing email?", 
+                options: ["A. Click the link to check", "B. Delete it", "C. Share it with friends"], 
+                answer: "B" 
+            },
+            { 
+                question: "How can you identify a fake website?", 
+                options: ["A. It has 'http://' instead of 'https://'", "B. It has a lock icon", "C. It asks for personal details"], 
+                answer: "A" 
+            },
+            { 
+                question: "What is Two-Factor Authentication (2FA)?", 
+                options: ["A. A backup password", "B. Extra security using OTPs or biometrics", "C. A type of malware"], 
+                answer: "B" 
+            },
+            { 
+                question: "What does SSL stand for?", 
+                options: ["A. Secure Socket Layer", "B. Secure Software Layer", "C. Simple Secure Link"], 
+                answer: "A" 
+            },
+            { 
+                question: "Which is the most common form of cyber attack?", 
+                options: ["A. Phishing", "B. Ransomware", "C. DDoS Attack"], 
+                answer: "A" 
+            },
+            { 
+                question: "What is malware?", 
+                options: ["A. Malicious software designed to harm a computer system", "B. A type of secure password", "C. A social media scam"], 
+                answer: "A" 
+            },
+            { 
+                question: "How often should you change your password?", 
+                options: ["A. Every 6 months", "B. Every 1-2 years", "C. Every month"], 
+                answer: "A" 
+            },
+            { 
+                question: "What is phishing?", 
+                options: ["A. A way to access your bank account", "B. A technique to trick you into revealing personal information", "C. A method of stealing passwords"], 
+                answer: "B" 
+            }
+        ];
+
         function startQuiz() {
             const quizContainer = document.getElementById("quizContainer");
-            const questions = [
-                { 
-                    question: "What is the full form of VPN?", 
-                    options: ["A. Virtual Private Network", "B. Verified Public Node", "C. Variable Private Net"], 
-                    answer: "A" 
-                },
-                { 
-                    question: "Which of these is the safest password?", 
-                    options: ["A. password123", "B. @MyDog_2024!", "C. 123456"], 
-                    answer: "B" 
-                },
-                { 
-                    question: "What should you do if you get a phishing email?", 
-                    options: ["A. Click the link to check", "B. Delete it", "C. Share it with friends"], 
-                    answer: "B" 
-                },
-                { 
-                    question: "How can you identify a fake website?", 
-                    options: ["A. It has 'http://' instead of 'https://'", "B. It has a lock icon", "C. It asks for personal details"], 
-                    answer: "A" 
-                },
-                { 
-                    question: "What is Two-Factor Authentication (2FA)?", 
-                    options: ["A. A backup password", "B. Extra security using OTPs or biometrics", "C. A type of malware"], 
-                    answer: "B" 
-                }
-            ];
-            
-            let currentQuestion = 0;
-            
-            function showQuestion() {
-                let q = questions[currentQuestion];
-                quizContainer.innerHTML = `<p>${q.question}</p>` +
-                    q.options.map((opt, index) => `<button onclick="checkAnswer('${String.fromCharCode(65 + index)}')">${opt}</button>`).join(" ") +
-                    `<p id='quizResult'></p>`;
-            }
-            
-            function checkAnswer(option) {
-                const result = document.getElementById("quizResult");
-                if (option === questions[currentQuestion].answer) {
-                    result.innerHTML = "✅ Correct!";
-                    currentQuestion++;
-                    if (currentQuestion < questions.length) {
-                        setTimeout(showQuestion, 1000);
-                    } else {
-                        quizContainer.innerHTML = "<p>🎉 You have completed the quiz! 🎉</p>";
-                    }
-                } else {
-                    result.innerHTML = "❌ Incorrect. Try again!";
-                }
-            }
-            
+            quizContainer.innerHTML = '';
             showQuestion();
+        }
+
+        function showQuestion() {
+            const quizContainer = document.getElementById("quizContainer");
+            const question = questions[currentQuestionIndex];
+            const questionElement = document.createElement('div');
+            questionElement.innerHTML = `
+                <h3>${question.question}</h3>
+                ${question.options.map((option, index) => `
+                    <button onclick="checkAnswer('${question.answer}', '${String.fromCharCode(65 + index)}', ${currentQuestionIndex})">${option}</button>
+                `).join('')}
+            `;
+            quizContainer.innerHTML = '';
+            quizContainer.appendChild(questionElement);
+        }
+
+        function checkAnswer(correctAnswer, selectedAnswer, index) {
+            const feedback = document.createElement("p");
+            const correctOption = String.fromCharCode(65 + questions[currentQuestionIndex].options.indexOf(correctAnswer)); // A, B, C
+            feedback.style.color = selectedAnswer === correctAnswer ? 'green' : 'red';
+            feedback.textContent = selectedAnswer === correctAnswer ? "Correct!" : `Wrong. The correct answer is option ${correctOption}.`;
+            document.getElementById("quizContainer").appendChild(feedback);
+
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                setTimeout(showQuestion, 2000);
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            const quizContainer = document.getElementById("quizContainer");
+            quizContainer.innerHTML = `<h2>Your score: ${score}/${questions.length}</h2>`;
         }
     </script>
 </body>
 </html>
-
